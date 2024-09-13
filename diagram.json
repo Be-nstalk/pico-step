@@ -1,25 +1,27 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-pi-pico-w", "id": "pico", "top": 16.05, "left": -63.6, "attrs": {} },
+    { "type": "board-pi-pico-w", "id": "pico", "top": 313.55, "left": 109.15, "attrs": {} },
     {
       "type": "wokwi-a4988",
       "id": "drv1",
-      "top": 225.8,
-      "left": 91.6,
+      "top": 225.3,
+      "left": 91.1,
       "rotate": 270,
       "attrs": {}
     },
     {
       "type": "wokwi-stepper-motor",
       "id": "stepper1",
-      
-      "top": -120.29,
-      "left": 212.08,
-      "attrs": { "display": "angle","arrow": "orange" }
-    }
+      "top": -158.69,
+      "left": 10.48,
+      "attrs": { "display": "steps", "arrow": "red" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 206, "left": -54.5, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -75.3, "left": 255.1, "attrs": {} },
+    { "type": "wokwi-rgb-led", "id": "rgb1", "top": 234.4, "left": 250.7, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 294, "left": 263, "attrs": { "color": "orange" } }
   ],
   "connections": [
     [ "drv1:1B", "stepper1:B-", "black", [ "v0" ] ],
@@ -27,10 +29,17 @@
     [ "stepper1:A+", "drv1:2A", "blue", [ "v0" ] ],
     [ "stepper1:A-", "drv1:2B", "red", [ "v0" ] ],
     [ "drv1:SLEEP", "drv1:RESET", "green", [ "v15.92", "h-9.9" ] ],
-    [ "drv1:STEP", "pico:GP3", "orange", [ "v130.8", "h-203.87", "v-163.2" ] ],
-    [ "drv1:DIR", "pico:GP2", "violet", [ "v140.4", "h-223.07", "v-182.4" ] ],
-    [ "drv1:GND.2", "pico:GND.8", "black", [ "v0" ] ],
-    [ "pico:VBUS", "drv1:VDD", "red", [ "h0" ] ]
+    [ "drv1:STEP", "pico:GP3", "orange", [ "v18.7", "h-58.1", "v57.6" ] ],
+    [ "drv1:DIR", "pico:GP2", "violet", [ "v28.3", "h-58.1", "v38.4" ] ],
+    [ "drv1:GND.2", "pico:GND.8", "black", [ "v-19.85", "h114.78", "v124.8" ] ],
+    [ "pico:VBUS", "drv1:VDD", "red", [ "h19.51", "v-96", "h-57.18" ] ],
+    [ "pico:GND.1", "sw1:2", "black", [ "h0" ] ],
+    [ "pico:GP4", "sw1:1", "green", [ "h0" ] ],
+    [ "pico:GP5", "sw1:3", "green", [ "h0" ] ],
+    [ "pico:GND.7", "ultrasonic1:GND", "black", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "pico:3V3_EN", "red", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "pico:GP27", "orange", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "pico:GP26", "violet", [ "v0" ] ]
   ],
   "dependencies": {}
 }
